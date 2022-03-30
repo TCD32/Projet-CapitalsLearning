@@ -34,10 +34,10 @@ def load_data(dataset='train', image_size=64):
 
                 x[current_index] = np.asarray(img)
                 # Écriture du label associé dans la variable de retour y
-                y[current_index] = idx_class
+                y[current_index] = int(idx_class)
                 current_index += 1
                 
-    return x, y
+    return x, y.astype(int)
 
 # Exemple utilisation
 # x_train, y_train = load_data(dataset='train', image_size=64)
