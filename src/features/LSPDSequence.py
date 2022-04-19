@@ -19,36 +19,26 @@ class LSPDSequence(Sequence):
 
     # Application de l'augmentation de données à chaque image du batch et aux
     # cartes de probabilités associées
-    def apply_augmentation(self, bx, by):
-
+    def apply_augmentation(self, bx):
         batch_x = np.zeros(bx.shape)
-        batch_y = np.zeros(by.shape)
+
         # Pour chaque image du batch
         for i in range(len(bx)):
-            masks = []
-            # Les 14 masques associés à l'image sont rangés dans une liste pour 
-            # pouvoir être traités par la librairie Albumentation
-            for n in range(by.shape[3]):
-                masks.append(by[i,:,:,n])
 
             img = bx[i]
+
             # Application de l'augmentation à l'image et aux masques
-            transformed = self.augment(image=img, masks=masks)
+            transformed = self.augment(image=img)
             batch_x[i] = transformed['image']
-            batch_y_list = transformed['masks']
 
-            # Reconstitution d'un tenseur à partir des masques augmentés
-            for k in range(by.shape[3]):
-                batch_y[i,:,:,k] = batch_y_list[k]
-
-        return batch_x, batch_y
+        return batch_x
 
     # Fonction appelée pour chaque nouveau batch : sélection et augmentation des données
     def __getitem__(self, idx):
         batch_x = self.x[self.indices1[idx * self.batch_size:(idx + 1) * self.batch_size]]
         batch_y = self.y[self.indices1[idx * self.batch_size:(idx + 1) * self.batch_size]]
         
-        batch_x, batch_y = self.apply_augmentation(batch_x, batch_y)
+        batch_x = self.apply_augmentation(batch_x)
 
         return np.array(batch_x), np.array(batch_y)
 
