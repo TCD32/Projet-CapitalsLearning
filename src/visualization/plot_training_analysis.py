@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
 
-def plot_training_analysis(history):
-  acc = history.history['accuracy']
-  val_acc = history.history['val_accuracy']
+def plot_training_analysis(history, accuracyType):
+  #acc = history.history['sparse_categorical_accuracy']
+  #acc = history.history['accuracy']
+  acc = history.history[accuracyType]
+  val_acc = history.history['val_'+accuracyType]
   loss = history.history['loss']
   val_loss = history.history['val_loss']
 

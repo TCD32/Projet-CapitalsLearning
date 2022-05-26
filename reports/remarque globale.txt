@@ -1,0 +1,14 @@
+temps d'exécution (50 epochs):
+	modèle base						9m26	
+	transfert learning				11s
+	transfert learning augmenté		9min53
+	fine tuning						(18m mais pour 2O Epochs et pas fait pour cinquantes car le résultats pour 20 semblais faux)
+
+
+
+
+pick val accuracy (50 epochs):
+	modèle base						71.6%	
+	transfert learning				72.3%
+	transfert learning augmenté		74.4% 
+	fine tuning						
