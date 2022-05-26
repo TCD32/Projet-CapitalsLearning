@@ -7,8 +7,8 @@ temps d'exécution (50 epochs):
 
 
 
-pick val accuracy (50 epochs):
+best val accuracy/sparse accuracy (50 epochs):
 	modèle base						71.6%	
 	transfert learning				72.3%
 	transfert learning augmenté		74.4% 
-	fine tuning						
+	fine tuning						76.6 ...
